@@ -1,4 +1,4 @@
-# mlops-zoomcamp
+# MLOps ZoomCamp 2023 - DataTalks Club
 
 ## Overview
 
