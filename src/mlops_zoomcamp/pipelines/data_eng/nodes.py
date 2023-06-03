@@ -39,10 +39,30 @@ def set_categorical_features(df_in: pd.DataFrame, params: dict) -> pd.DataFrame:
     return df_out
 
 
-def split_datasets(df_train, df_val, df_test, params):
+def create_train_set(df_in: pd.DataFrame, params: dict):
+
+    dv = DictVectorizer()
+
+    categorical_col = params["agg_categorical_feature"]
+    numerical_col = params["numerical_col"]
+    dicts = df_in[categorical_col + numerical_col].to_dict(orient='records')
+    x_set = dv.fit_transform(dicts)
+
+    y_set = df_in[params["target_col"]].values
+
+    return x_set, y_set, dv
 
 
-    return
+def create_val_test_sets(df_in: pd.DataFrame, params:dict, dv: DictVectorizer):
+
+    categorical_col = params["agg_categorical_feature"]
+    numerical_col = params["numerical_col"]
+    dicts = df_in[categorical_col + numerical_col].to_dict(orient='records')
+    x_set = dv.transform(dicts)
+
+    y_set = df_in[params["target_col"]].values
+
+    return x_set, y_set
 
 
 def preprocess(df: pd.DataFrame, dv: DictVectorizer, fit_dv: bool = False):
