@@ -3,14 +3,14 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
-train_dataset:
+train_dataset_raw:
   type: pandas.ParquetDataSet
   filepath: data/01_raw/yellow_tripdata_2022-01.parquet
 
-val_dataset:
+val_dataset_raw:
   type: pandas.ParquetDataSet
   filepath: data/01_raw/yellow_tripdata_2022-02.parquet
 
-test_dataset:
+test_dataset_raw:
   type: pandas.ParquetDataSet
   filepath: data/01_raw/yellow_tripdata_2022-03.parquet
