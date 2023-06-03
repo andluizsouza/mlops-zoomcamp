@@ -16,7 +16,6 @@ def register_pipelines() -> Dict[str, Pipeline]:
 
     data_eng_pipe = data_eng.create_pipeline()
 
-
     pipelines = {
         "data_eng": data_eng_pipe,
         "__default__": data_eng_pipe,
