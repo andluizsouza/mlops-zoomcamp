@@ -7,8 +7,8 @@
 
 data_preprocess:
   duration_col: "duration"
-  dropoff_col: "lpep_dropoff_datetime"
-  pickup_col: "lpep_pickup_datetime"
+  dropoff_col: "tpep_dropoff_datetime"
+  pickup_col: "tpep_pickup_datetime"
   categorical_features: ["PULocationID", "DOLocationID"]
   agg_categorical_feature: "PU_DO"
   numerical_col: "trip_distance"

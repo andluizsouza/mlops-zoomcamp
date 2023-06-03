@@ -69,13 +69,13 @@ def create_pipeline(**kwargs) -> Pipeline:
         ),
         node(
             func=create_val_test_sets,
-            inputs=["val_dataset_primary", "params:data_preprocess"],
+            inputs=["val_dataset_primary", "params:data_preprocess", "dv"],
             outputs=["x_val", "y_val"],
             name="create_val_set",
         ),
         node(
             func=create_val_test_sets,
-            inputs=["test_dataset_primary", "params:data_preprocess"],
+            inputs=["test_dataset_primary", "params:data_preprocess", "dv"],
             outputs=["x_test", "y_test"],
             name="create_test_set",
         ),
