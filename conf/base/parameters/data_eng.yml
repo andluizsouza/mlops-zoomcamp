@@ -3,3 +3,13 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/0.18.9/kedro_project_setup/configuration.html#parameters
+
+
+data_preprocess:
+  duration_col: "duration"
+  dropoff_col: "lpep_dropoff_datetime"
+  pickup_col: "lpep_pickup_datetime"
+  categorical_features: ["PULocationID", "DOLocationID"]
+  agg_categorical_feature: "PU_DO"
+  numerical_col: "trip_distance"
+  target_col: "tip_amount"
