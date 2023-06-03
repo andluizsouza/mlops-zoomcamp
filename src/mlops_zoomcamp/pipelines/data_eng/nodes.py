@@ -3,17 +3,8 @@ This is a boilerplate pipeline 'data_eng'
 generated using Kedro 0.18.9
 """
 
-import os
-import pickle
-import click
 import pandas as pd
-
 from sklearn.feature_extraction import DictVectorizer
-
-
-def dump_pickle(obj, filename: str):
-    with open(filename, "wb") as f_out:
-        return pickle.dump(obj, f_out)
 
 
 def calc_duration(df_in: pd.DataFrame, params: dict) -> pd.DataFrame:
@@ -43,8 +34,8 @@ def create_train_set(df_in: pd.DataFrame, params: dict):
 
     dv = DictVectorizer()
 
-    categorical_col = params["agg_categorical_feature"]
-    numerical_col = params["numerical_col"]
+    categorical_col = [params["agg_categorical_feature"]]
+    numerical_col = [params["numerical_col"]]
     dicts = df_in[categorical_col + numerical_col].to_dict(orient='records')
     x_set = dv.fit_transform(dicts)
 
@@ -55,8 +46,8 @@ def create_train_set(df_in: pd.DataFrame, params: dict):
 
 def create_val_test_sets(df_in: pd.DataFrame, params:dict, dv: DictVectorizer):
 
-    categorical_col = params["agg_categorical_feature"]
-    numerical_col = params["numerical_col"]
+    categorical_col = [params["agg_categorical_feature"]]
+    numerical_col = [params["numerical_col"]]
     dicts = df_in[categorical_col + numerical_col].to_dict(orient='records')
     x_set = dv.transform(dicts)
 

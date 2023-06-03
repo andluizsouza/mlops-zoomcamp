@@ -14,15 +14,13 @@ from .nodes import (
 )
 
 
-def create_pipeline() -> Pipeline:
+def create_pipeline(**kwargs) -> Pipeline:
+
     """
     Create a kedro pipeline connecting nodes
     Returns:
         Pipeline: built kedro pipeline
     """
-
-
-def create_pipeline(**kwargs) -> Pipeline:
 
     return pipeline([
         node(
