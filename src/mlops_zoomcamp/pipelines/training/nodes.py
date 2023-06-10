@@ -11,7 +11,7 @@ import optuna
 import pandas as pd
 from optuna.samplers import TPESampler
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, r2_score
 
 
 def tune_model_params(
@@ -21,10 +21,16 @@ def tune_model_params(
     y_val: pd.Series,
     params: dict,
 ):
+    
+    mlflow.set_tracking_uri("http://127.0.0.1:5000")
+    mlflow.set_experiment("random-forest-hyperopt")
 
     num_trials = params["num_trials"]
 
+    mlflow.sklearn.autolog()
+
     def objective(trial):
+
         params = {
             "n_estimators": trial.suggest_int("n_estimators", 10, 50, 1),
             "max_depth": trial.suggest_int("max_depth", 1, 20, 1),
@@ -34,10 +40,11 @@ def tune_model_params(
             "n_jobs": -1,
         }
 
-        rf_model = RandomForestRegressor(**params)
-        rf_model.fit(x_train, y_train)
-        y_pred = rf_model.predict(x_val)
-        rmse = mean_squared_error(y_val, y_pred, squared=False)
+        with mlflow.start_run():
+            rf_model = RandomForestRegressor(**params)
+            rf_model.fit(x_train, y_train)
+            y_pred = rf_model.predict(x_val)
+            rmse = mean_squared_error(y_val, y_pred, squared=False)
 
         return rmse
 
