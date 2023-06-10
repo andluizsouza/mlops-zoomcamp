@@ -3,6 +3,7 @@ This is a boilerplate pipeline 'data_eng'
 generated using Kedro 0.18.9
 """
 
+from typing import List
 import pandas as pd
 from sklearn.feature_extraction import DictVectorizer
 
@@ -48,9 +49,9 @@ def create_train_set(df_in: pd.DataFrame, params: dict):
     categorical_col = [params["agg_categorical_feature"]]
     numerical_col = [params["numerical_col"]]
     dicts = df_in[categorical_col + numerical_col].to_dict(orient="records")
-    x_set = dv.fit_transform(dicts)
+    x_set = pd.DataFrame(dv.fit_transform(dicts))
 
-    y_set = df_in[params["target_col"]].values
+    y_set = df_in[params["target_col"]]
 
     return x_set, y_set, dv
 
@@ -60,8 +61,8 @@ def create_val_test_sets(df_in: pd.DataFrame, params: dict, dv: DictVectorizer):
     categorical_col = [params["agg_categorical_feature"]]
     numerical_col = [params["numerical_col"]]
     dicts = df_in[categorical_col + numerical_col].to_dict(orient="records")
-    x_set = dv.transform(dicts)
+    x_set = pd.DataFrame(dv.transform(dicts))
 
-    y_set = df_in[params["target_col"]].values
+    y_set = df_in[params["target_col"]]
 
     return x_set, y_set
