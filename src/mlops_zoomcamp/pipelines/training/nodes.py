@@ -4,7 +4,7 @@ generated using Kedro 0.18.9
 """
 
 import json
-
+import numpy as np
 import mlflow
 import optuna
 import pandas as pd
@@ -39,6 +39,8 @@ def tune_model_params(
         rmse = mean_squared_error(y_val, y_pred, squared=False)
 
         return rmse
+    
+    print(x_train)
 
     sampler = TPESampler(seed=42)
     study = optuna.create_study(direction="minimize", sampler=sampler)

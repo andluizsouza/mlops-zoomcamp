@@ -19,8 +19,8 @@ test_dataset_raw:
   layer: raw
 
 x_train:
-  type: pandas.CSVDataSet
-  filepath: data/04_feature/x_train.csv
+  type: pickle.PickleDataSet
+  filepath: data/04_feature/x_train.pkl
   layer: feature
   versioned: False
 
@@ -38,8 +38,8 @@ dv:
   layer: feature
 
 x_val:
-  type: pandas.CSVDataSet
-  filepath: data/04_feature/x_val.csv
+  type: pickle.PickleDataSet
+  filepath: data/04_feature/x_val.pkl
   layer: feature
   versioned: False
 
@@ -50,8 +50,8 @@ y_val:
   versioned: False
 
 x_test:
-  type: pandas.CSVDataSet
-  filepath: data/05_model_input/x_test.csv
+  type: pickle.PickleDataSet
+  filepath: data/05_model_input/x_test.pkl
   layer: model_input
   versioned: False
 

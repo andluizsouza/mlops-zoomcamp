@@ -5,4 +5,4 @@
 # Link: https://docs.kedro.org/en/0.18.9/kedro_project_setup/configuration.html#parameters
 
 tuning:
-  num_trials: 5
+  num_trials: 10
