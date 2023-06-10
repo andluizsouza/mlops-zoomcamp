@@ -6,14 +6,17 @@
 train_dataset_raw:
   type: pandas.ParquetDataSet
   filepath: data/01_raw/yellow_tripdata_2022-01.parquet
+  layer: raw
 
 val_dataset_raw:
   type: pandas.ParquetDataSet
   filepath: data/01_raw/yellow_tripdata_2022-02.parquet
+  layer: raw
 
 test_dataset_raw:
   type: pandas.ParquetDataSet
   filepath: data/01_raw/yellow_tripdata_2022-03.parquet
+  layer: raw
 
 x_train:
   type: pandas.CSVDataSet

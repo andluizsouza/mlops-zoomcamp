@@ -4,11 +4,23 @@ generated using Kedro 0.18.9
 """
 
 from typing import List
+
 import pandas as pd
 from sklearn.feature_extraction import DictVectorizer
 
 
+def get_sample(df_in: pd.DataFrame, params) -> pd.DataFrame:
+
+    frac = params["frac"]
+
+    df_out = df_in.sample(frac=frac, random_state=42)
+
+    return df_out
+
+
 def calc_duration(df_in: pd.DataFrame, params: dict) -> pd.DataFrame:
+
+    print(df_in.info())
 
     df_out = df_in.copy()
     df_out[params["duration_col"]] = (

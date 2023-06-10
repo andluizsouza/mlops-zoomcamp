@@ -9,6 +9,7 @@ from .nodes import (
     calc_duration,
     create_train_set,
     create_val_test_sets,
+    get_sample,
     set_categorical_features,
 )
 
@@ -24,20 +25,38 @@ def create_pipeline(**kwargs) -> Pipeline:
     return pipeline(
         [
             node(
+                func=get_sample,
+                inputs=["train_dataset_raw", "params:sampling"],
+                outputs="train_dataset_sample",
+                name="sample_train",
+            ),
+            node(
+                func=get_sample,
+                inputs=["val_dataset_raw", "params:sampling"],
+                outputs="val_dataset_sample",
+                name="sample_val",
+            ),
+            node(
+                func=get_sample,
+                inputs=["test_dataset_raw", "params:sampling"],
+                outputs="test_dataset_sample",
+                name="sample_test",
+            ),
+            node(
                 func=calc_duration,
-                inputs=["train_dataset_raw", "params:data_preprocess"],
+                inputs=["train_dataset_sample", "params:data_preprocess"],
                 outputs="train_dataset_inter",
                 name="calc_duration_train",
             ),
             node(
                 func=calc_duration,
-                inputs=["val_dataset_raw", "params:data_preprocess"],
+                inputs=["val_dataset_sample", "params:data_preprocess"],
                 outputs="val_dataset_inter",
                 name="calc_duration_val",
             ),
             node(
                 func=calc_duration,
-                inputs=["test_dataset_raw", "params:data_preprocess"],
+                inputs=["test_dataset_sample", "params:data_preprocess"],
                 outputs="test_dataset_inter",
                 name="test_duration_test",
             ),
