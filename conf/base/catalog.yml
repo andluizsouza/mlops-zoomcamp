@@ -14,3 +14,46 @@ val_dataset_raw:
 test_dataset_raw:
   type: pandas.ParquetDataSet
   filepath: data/01_raw/yellow_tripdata_2022-03.parquet
+
+x_train:
+  type: pandas.CSVDataSet
+  filepath: data/04_feature/x_train.csv
+  layer: feature
+  versioned: False
+
+y_train:
+  type: pandas.CSVDataSet
+  filepath: data/04_feature/y_train.csv
+  layer: feature
+  versioned: False
+
+dv:
+  type: pickle.PickleDataSet
+  filepath: data/04_feature/dv.pkl
+  backend: pickle
+  versioned: False
+  layer: feature
+
+x_val:
+  type: pandas.CSVDataSet
+  filepath: data/04_feature/x_val.csv
+  layer: feature
+  versioned: False
+
+y_val:
+  type: pandas.CSVDataSet
+  filepath: data/04_feature/y_val.csv
+  layer: feature
+  versioned: False
+
+x_test:
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/x_test.csv
+  layer: model_input
+  versioned: False
+
+y_test:  
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/y_test.csv
+  layer: model_input
+  versioned: False
