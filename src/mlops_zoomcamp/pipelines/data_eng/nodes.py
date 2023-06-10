@@ -20,7 +20,6 @@ def get_sample(df_in: pd.DataFrame, params) -> pd.DataFrame:
 
 def calc_duration(df_in: pd.DataFrame, params: dict) -> pd.DataFrame:
 
-
     df_out = df_in.copy()
     df_out[params["duration_col"]] = (
         df_out[params["dropoff_col"]] - df_out[params["pickup_col"]]
